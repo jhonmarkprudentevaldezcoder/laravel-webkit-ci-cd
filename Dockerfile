@@ -3,6 +3,7 @@ FROM php:8.2-fpm
 # Copy composer.lock and composer.json
 COPY composer.lock composer.json /var/www/
 
+
 # Set working directory
 WORKDIR /var/www
 
