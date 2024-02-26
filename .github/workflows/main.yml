@@ -56,5 +56,5 @@ jobs:
     - name: Build and Push Docker Image
       run: |
         docker build -t jpvaldez/laravel-webkit .
-        echo ${{ kalilinux2 }} | docker login -u jpvaldez --password-stdin
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u jpvaldez --password-stdin
         docker push jpvaldez/laravel-webkit
