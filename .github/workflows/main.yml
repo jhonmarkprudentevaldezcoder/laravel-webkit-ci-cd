@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,8 +29,6 @@ jobs:
       with:
         php-version: '8.1'
         extensions: 'curl'
-
-    
 
     - name: Install Composer Dependencies
       run: |
@@ -57,12 +56,10 @@ jobs:
       with:
         docker-host: tcp://localhost:2375
 
-
     - name: Build and Push Docker Image
-      run: docker build -t jpvaldez/laravel-webkit .
+      run: |
+        docker build -t jpvaldez/laravel-webkit .
+        docker push jpvaldez/laravel-webkit
 
     - name: Login to Docker Hub
       run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u jpvaldez --password-stdin
-
-    - name: Push Docker Image
-      run: docker push jpvaldez/laravel-webkit
