@@ -57,9 +57,12 @@ jobs:
       with:
         docker-host: tcp://localhost:2375
 
-        
+
     - name: Build and Push Docker Image
-      run: |
-        docker build -t jpvaldez/laravel-webkit .
-        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u jhonweak --password-stdin
-        docker push jhonweak/laravel-webkit
+      run: docker build -t jpvaldez/laravel-webkit .
+
+    - name: Login to Docker Hub
+      run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u jpvaldez --password-stdin
+
+    - name: Push Docker Image
+      run: docker push jpvaldez/laravel-webkit
