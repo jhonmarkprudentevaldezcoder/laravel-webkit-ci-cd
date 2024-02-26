@@ -29,6 +29,11 @@ jobs:
         php-version: '8.1'
         extensions: 'curl'
 
+    - name: Load Environment Variables
+      run: |
+        cp .env.ci .env
+        php artisan key:generate
+        
     - name: Install Dependencies
       run: |
         curl -sS https://getcomposer.org/installer | php
