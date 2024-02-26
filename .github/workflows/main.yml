@@ -59,7 +59,9 @@ jobs:
     - name: Build and Push Docker Image
       run: |
         docker build -t jpvaldez/laravel-webkit .
-        docker push jpvaldez/laravel-webkit
+        docker tag jpvaldez/laravel-webkit:latest jpvaldez/laravel-webkit:tagname
+        docker push jpvaldez/laravel-webkit:latest
+        docker push jpvaldez/laravel-webkit:tagname
 
     - name: Login to Docker Hub
       run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u jpvaldez --password-stdin
