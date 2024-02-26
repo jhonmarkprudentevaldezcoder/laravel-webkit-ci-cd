@@ -29,14 +29,16 @@ jobs:
         php-version: '8.1'
         extensions: 'curl'
 
-    - name: Load Environment Variables
-      run: cp .env.example .env && php artisan key:generate
+    
 
     - name: Install Composer Dependencies
       run: |
         curl -sS https://getcomposer.org/installer | php
         mv composer.phar /usr/local/bin/composer
         composer install
+        
+    - name: Load Environment Variables
+      run: cp .env.example .env && php artisan key:generate
 
     - name: Run Tests
       run: php artisan test
